@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import RecipeCard from "@/app/components/RecipeCard";
 
-export default function RecipePage() {
+export default function AddRecipePage() {
   const [recipes, setRecipes] = useState([
     {
       id: 1,
@@ -22,7 +21,7 @@ export default function RecipePage() {
   });
 
   const [editingId, setEditingId] = useState<number | null>(null);
-  const [searchTerm, setSearchTerm] = useState(""); // ✅ New state for search
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -66,7 +65,6 @@ export default function RecipePage() {
     }
   };
 
-  // ✅ Filter recipes based on searchTerm
   const filteredRecipes = recipes.filter(
     (recipe) =>
       recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -75,9 +73,9 @@ export default function RecipePage() {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Recipe Manager</h1>
+      <h1 className="text-2xl font-bold mb-4">Logout</h1>
 
-      {/* ✅ Search Bar */}
+      {/* Search Bar */}
       <input
         type="text"
         placeholder="Search recipes..."
@@ -138,12 +136,22 @@ export default function RecipePage() {
         {filteredRecipes.length > 0 ? (
           filteredRecipes.map((recipe) => (
             <div key={recipe.id} className="relative border rounded p-2 shadow">
-              <RecipeCard
-                title={recipe.title}
-                ingredients={recipe.ingredients}
-                steps={recipe.steps}
-                imageUrl={recipe.imageUrl}
-              />
+              <div>
+                {recipe.imageUrl && (
+                  <img
+                    src={recipe.imageUrl}
+                    alt={recipe.title}
+                    className="rounded mb-2 max-h-48 w-full object-cover"
+                  />
+                )}
+                <h2 className="text-xl font-semibold">{recipe.title}</h2>
+                <p className="text-sm text-gray-600 mb-1">
+                  <strong>Ingredients:</strong> {recipe.ingredients}
+                </p>
+                <p className="text-sm text-gray-600">
+                  <strong>Steps:</strong> {recipe.steps}
+                </p>
+              </div>
               <div className="absolute top-2 right-2 space-x-2">
                 <button
                   onClick={() => handleEdit(recipe.id)}

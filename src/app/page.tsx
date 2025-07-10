@@ -1,32 +1,45 @@
-// src/app/page.tsx
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { lusitana } from "@/app/ui/fonts";
 import Image from "next/image";
 import Link from "next/link";
+import LogoutButton from "@/app/components/LogoutButton";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+    }
+  }, [router]);
+
   return (
     <main className="bg-background min-h-screen text-black font-sans">
       {/* Header */}
       <header className="bg-primary text-black px-6 py-6 shadow-md">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <h1 className="text-3xl font-extrabold">🍽️ RecipeShare</h1>
-          <nav className="space-x-6 text-lg font-semibold">
+          <nav className="flex items-center space-x-6 text-lg font-semibold">
             <Link href="/" className="hover:underline">
               Home
-            </Link>
-            <Link href="/recipes" className="hover:underline">
-              Recipes
             </Link>
             <Link href="/add-recipe" className="hover:underline">
               Add Recipes
             </Link>
+            <Link href="/profile" className="hover:underline">
+              Profile
+            </Link>
+            <LogoutButton />
           </nav>
         </div>
       </header>
 
       {/* Hero Image Section */}
       <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12 mx-auto">
-        {/* Desktop Image */}
         <Image
           src="/images/logo.jpg"
           width={500}
@@ -34,7 +47,6 @@ export default function Home() {
           className="hidden md:block rounded-lg"
           alt="Delicious food for desktop users"
         />
-        {/* Mobile Image */}
         <Image
           src="/images/img2.jpg"
           width={560}
