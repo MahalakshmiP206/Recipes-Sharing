@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
+  const router = useRouter();
+
   const [profile, setProfile] = useState({
     fullName: "",
     email: "",
@@ -40,9 +43,22 @@ export default function ProfilePage() {
 
   return (
     <main className="max-w-5xl mx-auto py-12 px-6">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
+      {/* Back Button */}
+      <div className="mb-6">
+        <button
+          onClick={() => router.push("/")}
+          className="text-primary font-semibold hover:underline flex items-center"
+        >
+          ← Back to Home
+        </button>
+      </div>
+
+      <h1 className="text-4xl font-bold mb-4 text-center text-gray-800">
         👤 Profile Settings
       </h1>
+      <p className="text-center text-gray-500 mb-10">
+        Customize your cooking preferences and showcase your profile.
+      </p>
 
       {/* Profile Picture */}
       <div className="flex flex-col items-center mb-10">
@@ -53,8 +69,14 @@ export default function ProfilePage() {
           alt="Profile"
           className="rounded-full shadow-md"
         />
-        <p className="text-sm mt-3 text-gray-500">
-          Profile picture
+        <p className="text-sm mt-3 text-gray-500">Profile picture</p>
+      </div>
+
+      {/* Highlight Card */}
+      <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl shadow-sm mb-10">
+        <p className="text-center font-medium text-orange-800">
+          🌟 Tip: A complete profile helps other foodies connect with you
+          better!
         </p>
       </div>
 
@@ -66,7 +88,7 @@ export default function ProfilePage() {
             name="fullName"
             value={profile.fullName}
             onChange={handleProfileChange}
-            className="w-full border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
           />
         </div>
 
@@ -194,10 +216,15 @@ export default function ProfilePage() {
       <div className="text-center mt-10">
         <button
           onClick={handleSave}
-          className="bg-primary hover:bg-primary/90 transition px-8 py-3 rounded-xl font-semibold shadow text-black"
+          className="bg-orange-500 hover:bg-orange-600 transition px-8 py-3 rounded-xl font-semibold shadow text-white"
         >
           💾 Save Profile
         </button>
+      </div>
+
+      {/* Fun Footer Section */}
+      <div className="text-center text-sm text-gray-400 mt-10">
+        <p>✨ Keep cooking, keep sharing. You’re amazing! ✨</p>
       </div>
     </main>
   );
