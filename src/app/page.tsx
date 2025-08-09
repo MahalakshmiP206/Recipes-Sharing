@@ -170,9 +170,11 @@ export default function Home() {
           >
             <Image
               src={`/images/img${i}.jpg`}
-              width={400}
-              height={300}
               alt={`Tasty Dish ${i}`}
+              width={332}
+              height={i === 3 ? 401 : i === 4 ? 332 : 471}
+              sizes="(max-width: 768px) 100vw, 332px"
+              quality={80}
               className="rounded-lg mb-4"
             />
             <h3 className="text-2xl font-bold mb-2 text-orange-700">
