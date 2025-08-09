@@ -104,7 +104,7 @@ export default function Home() {
         </p>
         <Link
           href="/signup"
-          className="inline-block bg-orange-500 hover:bg-orange-600 text-white text-lg font-medium py-3 px-6 rounded-lg shadow-md transition"
+          className="inline-block bg-orange-700 hover:bg-orange-800 text-white text-lg font-medium py-3 px-6 rounded-lg shadow-md transition"
         >
           Get Started
         </Link>
@@ -134,9 +134,9 @@ export default function Home() {
             className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition"
           >
             <div className="text-4xl mb-3">{feature.icon}</div>
-            <h4 className="text-xl font-bold text-orange-800 mb-2">
+            <h2 className="text-xl font-bold text-orange-800 mb-2">
               {feature.title}
-            </h4>
+            </h2>
             <p className="text-gray-600">{feature.desc}</p>
           </div>
         ))}
